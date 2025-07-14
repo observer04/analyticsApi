@@ -1,0 +1,17 @@
+download & install python 3
+create a virtual environment
+install python packages
+fastapi hello world
+Docker desktop and docker compose
+production dockerfile for fastapi
+dockerbased fastapi helloworld
+####
+
+docker build -t analytics-api -f Dockerfile .
+docker run analytics-api 
+
+better:
+docker compose up --watch
+docker compose run app python
+
+rest api
