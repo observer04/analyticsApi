@@ -141,3 +141,6 @@ todo.txt
 
 #testing notebooks
 NBs/
+
+# Docker compose file
+compose.yaml
