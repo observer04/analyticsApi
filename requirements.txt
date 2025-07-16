@@ -7,3 +7,5 @@ sqlalchemy
 pydantic
 python-decouple
 psycopg[binary]
+pytest
+httpx

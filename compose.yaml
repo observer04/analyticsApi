@@ -21,6 +21,9 @@ services:
           action: rebuild
         - path: requirements.txt
           action: rebuild
+    depends_on:
+      db:
+        condition: service_healthy
   
 #postgresql+psycopg://time-user:time-pw@hostvalue:5432/timescaledb
   db:
@@ -30,12 +33,16 @@ services:
       - POSTGRES_PASSWORD=time-pw
       - POSTGRES_DB=timescaledb
     ports:
-      - "5432:5432"
+      - "0.0.0.0:5432:5432"
     # expose:
     #   - "5432"
     volumes:
       - timescaledb_data:/var/lib/postgresql/data
-
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U time-user -d timescaledb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
 volumes:
   timescaledb_data:

@@ -15,7 +15,7 @@ async def lifespan(app: FastAPI):
     #after app stops cleanup
 
 
-app = FastAPI()
+app = FastAPI(lifespan=lifespan)
 app.include_router(events_router, prefix='/api/events', )
 
 
