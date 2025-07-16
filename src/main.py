@@ -3,6 +3,7 @@ from mimetypes import init
 from typing import Union
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from api.events import router as events_router
 from api.db.session import init_db
 
@@ -16,6 +17,14 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins, 
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all methods
+    allow_headers=["*"],  # Allow all headers
+)
+
 app.include_router(events_router, prefix='/api/events', )
 
 
