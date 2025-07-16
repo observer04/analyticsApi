@@ -9,8 +9,8 @@ services:
     env_file:
       - .env.compose
     ports:
-      - "8080:8002"
-    command: uvicorn main:app --host 0.0.0.0 --port 8002 --reload
+      - "8080:${PORT}"
+    command: uvicorn main:app --host 0.0.0.0 --port ${PORT} --reload
     volumes:
       - ./src:/code:rw
     develop:
